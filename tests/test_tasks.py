@@ -1,5 +1,8 @@
 from fastapi.testclient import TestClient
-from main import app
+from main import app, Base, engine
+
+Base.metadata.drop_all(bind=engine)
+Base.metadata.create_all(bind=engine)
 
 client = TestClient(app)
 
